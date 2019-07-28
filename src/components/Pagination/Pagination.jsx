@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-type';
 
 import './Pagination.css';
 
@@ -19,6 +20,7 @@ const renderPaginationBtns = (onClick, page, lastPage) => {
     } else {
         btnsArr = [...middleBtn, ...lastBtns]
     }
+    console.log(btnsArr);
 
     return btnsArr.map(num => {
         return num === '...' ?
@@ -38,6 +40,19 @@ const Pagination = ({ onClick, page, lastPage }) => (
         {renderPaginationBtns(onClick, page, lastPage)}
         { page !== lastPage - 1 && <button onClick={onClick} data-name="next">{'>>>'}</button> }
     </div>
-)
+);
+
+
+Pagination.propTypes = {
+    onClick: PropTypes.func,
+    page: PropTypes.number,
+    lastPage: PropTypes.number,
+  }
+  
+  Pagination.defaultProps = {
+    onClick: () => {},
+    page: 0,
+    lastPage: 0,
+  }
 
 export default Pagination;
